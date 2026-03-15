@@ -4,262 +4,272 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-adsense-account" content="ca-pub-8457483390050878">
-<title>베트남 무비자 계산기</title>
+<meta name="description" content="베트남 무비자(45일)·E비자(90일) 체류 만료일을 자동 계산해 드립니다. 비자 종류별 조건, 신청 방법, 주의사항까지 한국어로 정리했습니다.">
+<meta property="og:title" content="베트남 비자 계산기 – 무비자·E비자 만료일 자동 계산">
+<meta property="og:description" content="입국일만 입력하면 베트남 체류 만료일을 즉시 확인. 무비자 45일, E비자 90일 계산기 + 비자 가이드">
+<meta property="og:type" content="website">
+<title>베트남 비자 계산기 – 무비자·E비자 만료일 자동 계산 | 투어픽</title>
+<!-- Google AdSense (자동 광고) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8457483390050878" crossorigin="anonymous"></script>
 <style>
-  * {
-    box-sizing: border-box;
-  }
-  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
-    background-color: #f4f7f6;
-    margin: 0;
-    padding: 20px;
+    background-color: #f0f4f8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+    color: #333;
+    line-height: 1.6;
   }
-  
-  .visa-calculator-container {
-    max-width: 800px;
-    margin: 0 auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  
-  .calculator-card {
-    border-radius: 12px;
-    padding: 30px;
-    margin-bottom: 30px;
+
+  .site-header {
+    background: linear-gradient(135deg, #0052D4 0%, #4364F7 60%, #6FB1FC 100%);
     color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 28px 20px 22px;
+    text-align: center;
   }
-  
-  /* 투어픽 메인 컬러 (시원한 블루) */
-  .no-visa-card {
-    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+
+  .site-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 6px;
   }
-  
-  /* 대비되는 포인트 컬러 (오렌지/코랄) */
-  .e-visa-card {
-    background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+
+  .site-header p {
+    font-size: 14px;
+    opacity: 0.88;
   }
-  
-  .card-title {
-    margin: 0 0 10px 0;
-    font-size: 28px;
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 28px 16px 40px;
   }
-  
-  .card-description {
-    margin: 0 0 20px 0;
-    opacity: 0.9;
-    font-size: 16px;
+
+  /* 계산기 카드 */
+  .calculator-card {
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 14px;
+    color: white;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   }
-  
+
+  .no-visa-card { background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%); }
+  .e-visa-card  { background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%); }
+
+  .card-title { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .card-description { font-size: 14px; opacity: 0.92; margin-bottom: 18px; }
+
   .input-container {
-    background: rgba(255,255,255,0.15);
-    border-radius: 8px;
-    padding: 20px;
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.18);
+    border-radius: 10px;
+    padding: 18px;
   }
-  
-  .input-label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  
+
+  .input-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+
   .date-input {
     width: 100%;
-    padding: 12px 15px;
-    font-size: 18px;
-    border: 2px solid rgba(255,255,255,0.3);
+    padding: 11px 14px;
+    font-size: 17px;
+    border: 2px solid rgba(255,255,255,0.35);
     border-radius: 8px;
     background: white;
     color: #333;
     cursor: pointer;
   }
-  
+
   .result-container {
-    margin-top: 20px;
-    padding: 20px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 8px;
+    margin-top: 16px;
+    padding: 18px;
+    background: rgba(255,255,255,0.96);
+    border-radius: 10px;
     color: #333;
     display: none;
   }
-  
-  .result-container.show {
-    display: block;
-  }
-  
-  .result-label {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 5px;
-  }
-  
-  .result-date {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-  
-  .no-visa-color {
-    color: #0072ff;
-  }
-  
-  .e-visa-color {
-    color: #ff7e5f;
-  }
-  
-  .result-exit-date {
-    font-size: 26px;
-    font-weight: 700;
-  }
-  
-  .no-visa-exit {
-    color: #0056b3;
-  }
-  
-  .e-visa-exit {
-    color: #e65c00;
-  }
-  
-  .result-note {
-    font-size: 15px;
-    color: #666;
-    margin-top: 5px;
-  }
-  
-  .divider {
-    height: 1px;
-    background: #e0e0e0;
-    margin: 15px 0;
-  }
-  
+
+  .result-container.show { display: block; }
+  .result-label { font-size: 13px; color: #777; margin-bottom: 3px; }
+  .result-date { font-size: 17px; font-weight: 600; margin-bottom: 12px; }
+  .no-visa-color { color: #0072ff; }
+  .e-visa-color  { color: #ff7e5f; }
+  .result-exit-date { font-size: 24px; font-weight: 700; }
+  .no-visa-exit { color: #0056b3; }
+  .e-visa-exit  { color: #e65c00; }
+  .result-note  { font-size: 13px; color: #666; margin-top: 4px; }
+
+  .divider { height: 1px; background: #e8e8e8; margin: 12px 0; }
+
   .tip-box {
-    margin-top: 15px;
-    padding: 12px;
+    margin-top: 12px;
+    padding: 10px 12px;
     border-left: 4px solid;
     border-radius: 4px;
-    font-size: 15px;
+    font-size: 13px;
   }
-  
-  .tip-warning {
-    background: #fff3cd;
-    border-color: #ffc107;
-    color: #856404;
+
+  .tip-warning { background: #fff8e1; border-color: #ffc107; color: #7d5a00; }
+  .tip-info    { background: #e0f7fa; border-color: #00bcd4; color: #006064; }
+
+  /* 광고 */
+  .ad-unit { margin: 24px 0; text-align: center; overflow: hidden; min-height: 90px; }
+
+  /* 콘텐츠 섹션 공통 */
+  .content-section {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
   }
-  
-  .tip-info {
-    background: #e0f7fa;
-    border-color: #00bcd4;
-    color: #006064;
+
+  .section-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f4f8;
   }
-  
-  .links-container {
-    margin-top: 30px;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 16px;
-    color: #666;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+  /* 비교 테이블 */
+  .visa-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 4px;
   }
-  
-  .links-container p {
-    margin: 0 0 10px 0;
+
+  .visa-table th {
+    background: #f5f7fa;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 700;
+    color: #555;
+    border-bottom: 2px solid #e8ecf0;
+  }
+
+  .visa-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: top;
+  }
+
+  .visa-table tr:last-child td { border-bottom: none; }
+  .visa-table tr:hover td { background: #fafbfc; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 12px;
     font-weight: 600;
-    color: #333;
   }
-  
-  .link-buttons {
+
+  .badge-blue   { background: #e8f0fe; color: #1a73e8; }
+  .badge-orange { background: #fce8e0; color: #e05a2b; }
+  .badge-green  { background: #e6f4ea; color: #1e8e3e; }
+
+  /* FAQ */
+  .faq-item { margin-bottom: 16px; }
+
+  .faq-q {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    cursor: pointer;
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    background: #f5f7fa;
+    border-radius: 8px;
+    transition: background 0.2s;
   }
-  
+
+  .faq-q:hover { background: #eef1f6; }
+
+  .faq-a {
+    font-size: 14px;
+    color: #555;
+    padding: 10px 14px;
+    border-left: 3px solid #4364F7;
+    margin-left: 4px;
+    display: none;
+  }
+
+  .faq-a.open { display: block; }
+
+  /* 단계 안내 */
+  .steps { counter-reset: step; }
+
+  .step-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .step-content strong { display: block; font-size: 15px; margin-bottom: 3px; }
+  .step-content p { font-size: 13px; color: #666; }
+
+  /* 주의사항 목록 */
+  .notice-list { list-style: none; }
+
+  .notice-list li {
+    font-size: 14px;
+    color: #444;
+    padding: 8px 0 8px 22px;
+    border-bottom: 1px solid #f5f5f5;
+    position: relative;
+  }
+
+  .notice-list li:last-child { border-bottom: none; }
+
+  .notice-list li::before {
+    content: '⚠️';
+    position: absolute;
+    left: 0;
+    font-size: 13px;
+  }
+
+  /* 관련 링크 */
+  .link-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+
   .link-button {
     display: inline-block;
-    padding: 12px 24px;
+    padding: 11px 22px;
     color: white;
     text-decoration: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  
-  .link-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  }
-  
-  .no-visa-button {
-    background: #0072ff;
-  }
-  
-  .e-visa-button {
-    background: #ff7e5f;
-  }
-  
-  .footer-banner {
-    background: linear-gradient(135deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 30px;
     border-radius: 8px;
-    font-size: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  }
-  
-  .footer-banner a {
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    background: rgba(255,255,255,0.2);
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: background 0.3s;
-  }
-  
-  .footer-banner a:hover {
-    background: rgba(255,255,255,0.3);
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
   }
 
-  /* 광고 유닛 */
-  .ad-unit {
-    margin: 0 auto 30px;
-    text-align: center;
-    overflow: hidden;
-  }
+  .link-button:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,0.16); }
+  .no-visa-button { background: #0072ff; }
+  .e-visa-button  { background: #ff7e5f; }
 
   /* 제휴 문의 폼 */
-  .contact-section {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 30px;
-    margin-top: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-  }
-
-  .contact-section h3 {
-    margin: 0 0 6px 0;
-    font-size: 20px;
-    color: #222;
-  }
-
-  .contact-section p {
-    margin: 0 0 20px 0;
-    font-size: 14px;
-    color: #888;
-  }
-
-  .contact-form .form-group {
-    margin-bottom: 14px;
-  }
+  .contact-form .form-group { margin-bottom: 13px; }
 
   .contact-form label {
     display: block;
@@ -272,161 +282,304 @@
   .contact-form input,
   .contact-form textarea {
     width: 100%;
-    padding: 11px 14px;
-    border: 1px solid #ddd;
+    padding: 10px 13px;
+    border: 1px solid #dce1e8;
     border-radius: 7px;
     font-size: 14px;
     font-family: inherit;
     color: #333;
-    transition: border-color 0.2s;
     outline: none;
+    transition: border-color 0.2s;
   }
 
   .contact-form input:focus,
-  .contact-form textarea:focus {
-    border-color: #0072ff;
-  }
+  .contact-form textarea:focus { border-color: #4364F7; }
 
-  .contact-form textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
+  .contact-form textarea { resize: vertical; min-height: 96px; }
 
   .contact-submit {
-    display: inline-block;
-    padding: 12px 28px;
-    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    padding: 11px 26px;
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
     color: white;
     border: none;
     border-radius: 7px;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
     transition: opacity 0.2s;
   }
 
-  .contact-submit:hover {
-    opacity: 0.88;
-  }
+  .contact-submit:hover { opacity: 0.85; }
 
   .contact-success {
     display: none;
-    margin-top: 14px;
-    padding: 12px 16px;
+    margin-top: 12px;
+    padding: 11px 14px;
     background: #e8f5e9;
     border-left: 4px solid #43a047;
     border-radius: 5px;
     font-size: 14px;
     color: #2e7d32;
   }
+
+  /* 개인정보처리방침 */
+  .privacy-section {
+    background: #f8f9fb;
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #666;
+  }
+
+  .privacy-section h3 { font-size: 15px; color: #333; margin-bottom: 10px; }
+  .privacy-section p  { margin-bottom: 8px; }
+  .privacy-section ul { padding-left: 18px; margin-bottom: 8px; }
+  .privacy-section li { margin-bottom: 4px; }
+
+  /* 푸터 */
+  .site-footer {
+    background: linear-gradient(135deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
+    color: white;
+    text-align: center;
+    padding: 18px 20px;
+    font-size: 13px;
+  }
+
+  .site-footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    background: rgba(255,255,255,0.2);
+    padding: 3px 7px;
+    border-radius: 4px;
+  }
+
+  .site-footer a:hover { background: rgba(255,255,255,0.3); }
+
+  /* 반응형 */
+  @media (max-width: 560px) {
+    .site-header h1 { font-size: 20px; }
+    .card-title { font-size: 19px; }
+    .visa-table th, .visa-table td { padding: 8px; font-size: 13px; }
+  }
 </style>
 </head>
 <body>
 
-<div class="visa-calculator-container">
-  
+<header class="site-header">
+  <h1>🇻🇳 베트남 비자 계산기</h1>
+  <p>입국일 선택 → 체류 만료일 자동 계산 · 무비자 45일 · E비자 90일</p>
+</header>
+
+<div class="container">
+
+  <!-- ① 무비자 계산기 -->
   <div class="calculator-card no-visa-card">
-    <h2 class="card-title">🛂 베트남 무비자 체류 계산기</h2>
-    <p class="card-description">베트남은 무비자로 <strong>44박 45일</strong>까지 체류 가능합니다</p>
-    
+    <h2 class="card-title">🛂 무비자 체류 계산기</h2>
+    <p class="card-description">한국 여권 소지자는 <strong>무비자로 44박 45일</strong>까지 체류 가능합니다</p>
     <div class="input-container">
       <label class="input-label">📅 베트남 입국일을 선택하세요</label>
       <input type="date" id="noVisaDate" class="date-input">
     </div>
-    
     <div id="noVisaResult" class="result-container">
-      <div style="margin-bottom: 15px;">
+      <div style="margin-bottom: 12px;">
         <div class="result-label">입국일</div>
         <div class="result-date no-visa-color" id="noVisaEntry"></div>
       </div>
-      
       <div class="divider"></div>
-      
       <div>
-        <div class="result-label">마지막 체류 가능일 (출국해야 하는 날)</div>
+        <div class="result-label">마지막 체류 가능일 (이 날까지 출국)</div>
         <div class="result-exit-date no-visa-exit" id="noVisaExit"></div>
-        <div class="result-note">이 날 자정(24:00) 전까지 출국 심사를 통과해야 합니다</div>
+        <div class="result-note">자정(24:00) 전에 출국 심사를 통과해야 합니다</div>
       </div>
-      
       <div class="tip-box tip-warning">
-        💡 <strong>팁:</strong> 마지막 날 출국이라면 공항에 3시간 전에 도착하세요!
+        💡 <strong>팁:</strong> 마지막 날 출국 시 공항 혼잡을 감안해 최소 3시간 전 도착을 권장합니다.
       </div>
     </div>
   </div>
-  
-  <!-- 광고 1: 무비자 카드와 E비자 카드 사이 -->
-  <div class="ad-unit">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-8457483390050878"
-         data-ad-slot="auto"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
 
+  <!-- ② E비자 계산기 -->
   <div class="calculator-card e-visa-card">
-    <h2 class="card-title">✈️ 베트남 E비자 체류 계산기</h2>
-    <p class="card-description">베트남 E비자로 <strong>89박 90일</strong>까지 체류 가능합니다</p>
-    
+    <h2 class="card-title">✈️ E비자 체류 계산기</h2>
+    <p class="card-description">베트남 E비자(전자비자)로 <strong>89박 90일</strong>까지 체류 가능합니다</p>
     <div class="input-container">
       <label class="input-label">📅 베트남 입국일을 선택하세요</label>
       <input type="date" id="eVisaDate" class="date-input">
     </div>
-    
     <div id="eVisaResult" class="result-container">
-      <div style="margin-bottom: 15px;">
+      <div style="margin-bottom: 12px;">
         <div class="result-label">입국일</div>
         <div class="result-date e-visa-color" id="eVisaEntry"></div>
       </div>
-      
       <div class="divider"></div>
-      
       <div>
-        <div class="result-label">마지막 체류 가능일 (출국해야 하는 날)</div>
+        <div class="result-label">마지막 체류 가능일 (이 날까지 출국)</div>
         <div class="result-exit-date e-visa-exit" id="eVisaExit"></div>
-        <div class="result-note">이 날 자정(24:00) 전까지 출국 심사를 통과해야 합니다</div>
+        <div class="result-note">자정(24:00) 전에 출국 심사를 통과해야 합니다</div>
       </div>
-      
       <div class="tip-box tip-info">
-        ℹ️ <strong>참고:</strong> E비자는 온라인으로 신청하며, 3일 정도 소요됩니다.
+        ℹ️ <strong>참고:</strong> E비자는 온라인 신청 후 심사까지 약 3 영업일이 소요됩니다. 출발 1주일 전 여유 있게 신청하세요.
       </div>
     </div>
   </div>
-  
-  <div class="links-container">
-    <p>더 자세한 정보가 필요하신가요?</p>
-    <div class="link-buttons">
-      <a href="https://youtu.be/aquOmcXtyc8?si=GBrvvUGQsnZKvuPC" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="link-button no-visa-button">
-        📖 베트남 유심 vs 이심 완벽 가이드
-      </a>
-      <a href="https://youtu.be/rSQoe6JcyC0?si=P6byzUbN9saQRV_l" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="link-button e-visa-button">
-        📖 베트남 여행 필수 준비물
-      </a>
-    </div>
-  </div>
-  
-  <!-- 광고 2: 링크 버튼과 제휴 문의 폼 사이 -->
+
+  <!-- 광고 1 -->
   <div class="ad-unit">
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-8457483390050878"
-         data-ad-slot="auto"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- 제휴 문의 폼 -->
-  <div class="contact-section">
-    <h3>🤝 제휴 문의</h3>
-    <p>광고, 협찬, 콜라보 등 제휴 관련 문의는 아래 양식을 이용해 주세요.</p>
+  <!-- ③ 무비자 vs E비자 비교 -->
+  <section class="content-section">
+    <h2 class="section-title">📋 무비자 vs E비자 한눈에 비교</h2>
+    <div style="overflow-x:auto;">
+      <table class="visa-table">
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th><span class="badge badge-blue">무비자</span></th>
+            <th><span class="badge badge-orange">E비자</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>최대 체류 기간</td><td><strong>45일</strong></td><td><strong>90일</strong></td></tr>
+          <tr><td>입국 횟수</td><td>단수 (매번 새로 입국)</td><td>단수 / 복수 선택 가능</td></tr>
+          <tr><td>비용</td><td>무료</td><td>약 25 USD (2024년 기준)</td></tr>
+          <tr><td>신청 방법</td><td>별도 신청 없음</td><td>온라인 신청 (evisa.xuatnhapcanh.gov.vn)</td></tr>
+          <tr><td>처리 기간</td><td>즉시 (현장 입국 심사)</td><td>3 영업일 이내</td></tr>
+          <tr><td>연장 가능 여부</td><td>불가 (출국 후 재입국)</td><td>불가 (신규 신청 필요)</td></tr>
+          <tr><td>적합한 여행자</td><td>단기 여행자, 디지털 노마드</td><td>장기 체류자, 워케이션</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ④ E비자 신청 방법 -->
+  <section class="content-section">
+    <h2 class="section-title">📝 베트남 E비자 신청 방법 (단계별 안내)</h2>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>베트남 이민국 공식 사이트 접속</strong>
+          <p>베트남 정부 공식 전자비자 사이트(evisa.xuatnhapcanh.gov.vn)에 접속합니다. 비공식 대행사이트는 수수료가 추가되거나 개인정보 유출 위험이 있으니 반드시 공식 사이트를 이용하세요.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>여권 정보 및 사진 업로드</strong>
+          <p>여권 사진면 스캔본(JPG, 2MB 이하)과 여권용 증명사진(4×6cm, 흰 배경)이 필요합니다. 여권 유효기간이 입국 예정일로부터 최소 6개월 이상 남아 있어야 합니다.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>입국 정보 입력 및 결제</strong>
+          <p>체류 기간(90일 이내), 입국 예정일, 입국 공항/육로 등을 선택합니다. 비자 수수료 25 USD를 신용카드로 결제합니다.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>이메일로 E비자 수령 및 출력</strong>
+          <p>심사 승인 후(3 영업일 이내) 이메일로 E비자 PDF가 발송됩니다. 컬러 인쇄 후 입국 시 제출하거나 스마트폰 화면으로 제시해도 됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 광고 2 -->
+  <div class="ad-unit">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8457483390050878"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- ⑤ FAQ -->
+  <section class="content-section">
+    <h2 class="section-title">❓ 자주 묻는 질문 (FAQ)</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">무비자 45일이 지났는데 출국하지 못하면 어떻게 되나요? <span>＋</span></div>
+      <div class="faq-a">체류 기간 초과(오버스테이)는 베트남 출입국법 위반입니다. 출국 시 공항에서 벌금 부과, 최악의 경우 입국 금지 처분을 받을 수 있습니다. 천재지변 등 불가피한 사유가 있다면 현지 이민국에 즉시 연락해 연장을 문의하세요.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">무비자로 45일 있다가 잠깐 캄보디아·태국에 다녀오면 리셋되나요? <span>＋</span></div>
+      <div class="faq-a">이론적으로 출국 후 재입국 시 무비자 기간이 새로 시작됩니다(비자런). 다만 입국 심사관이 잦은 비자런을 이민 목적으로 판단해 입국을 거부할 수 있습니다. 장기 체류가 목적이라면 E비자나 장기 비자 발급을 권장합니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">E비자 신청 후 입국 날짜를 변경할 수 있나요? <span>＋</span></div>
+      <div class="faq-a">승인된 E비자의 입국 날짜 변경은 불가합니다. E비자에는 '유효 시작일'이 있으며, 그 이전에 입국할 수 없습니다. 일정이 변경되었다면 기존 비자를 취소하고 새로 신청해야 합니다. 수수료는 환불되지 않습니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">체류 만료일 당일 출국해도 괜찮나요? <span>＋</span></div>
+      <div class="faq-a">만료일 당일 출국은 가능합니다. 단, 자정(00:00) 전에 출국 심사를 완료해야 합니다. 성수기 공항 혼잡을 감안해 최소 3시간 전 공항 도착을 권장하며, 가능하면 하루 일찍 출국하는 것이 가장 안전합니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">베트남 비자 기간은 어느 날부터 카운트 되나요? <span>＋</span></div>
+      <div class="faq-a">입국 심사 도장이 찍힌 날(입국일)이 1일째입니다. 예를 들어 1월 1일 입국 시 무비자 기준 1월 45일(= 2월 14일)이 마지막 체류 가능일입니다. 위 계산기는 이 기준으로 날짜를 자동 계산합니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">어린이·영유아도 E비자가 필요한가요? <span>＋</span></div>
+      <div class="faq-a">네, 연령에 관계없이 모든 외국인은 비자 또는 무비자 입국 자격이 있어야 합니다. 영유아도 부모와 별도로 E비자를 신청하거나 무비자로 입국해야 합니다. 여권이 없는 경우 여권 발급 후 신청이 가능합니다.</div>
+    </div>
+  </section>
+
+  <!-- ⑥ 주의사항 -->
+  <section class="content-section">
+    <h2 class="section-title">⚠️ 베트남 입출국 주의사항</h2>
+    <ul class="notice-list">
+      <li>여권 유효기간이 입국일 기준 <strong>6개월 미만</strong>이면 입국이 거부될 수 있습니다.</li>
+      <li>무비자 기간 45일은 <strong>한국 여권 소지자</strong>에게만 해당됩니다. 다른 국적은 별도 확인이 필요합니다.</li>
+      <li>E비자 상단에 명시된 <strong>만료일(Expiry Date)</strong>과 계산기 결과를 반드시 교차 확인하세요.</li>
+      <li>왕복 항공권 또는 다음 목적지 항공권을 소지하지 않으면 탑승 거부 또는 입국 심사에서 문제가 생길 수 있습니다.</li>
+      <li>입국 시 숙소 주소를 요구받을 수 있으므로 첫째 날 숙소 예약 확인서를 지참하세요.</li>
+      <li>드론, 전자담배, 고가 전자기기 등은 신고 의무 또는 반입 금지 품목일 수 있습니다. 출발 전 최신 규정을 확인하세요.</li>
+    </ul>
+  </section>
+
+  <!-- ⑦ 관련 영상 -->
+  <section class="content-section" style="text-align:center;">
+    <h2 class="section-title">📺 베트남 여행 참고 영상</h2>
+    <p style="font-size:14px; color:#777; margin-bottom:16px;">투어픽이 직접 제작한 베트남 여행 가이드 영상입니다.</p>
+    <div class="link-buttons">
+      <a href="https://youtu.be/aquOmcXtyc8?si=GBrvvUGQsnZKvuPC"
+         target="_blank" rel="noopener noreferrer"
+         class="link-button no-visa-button">📶 베트남 유심 vs 이심 완벽 가이드</a>
+      <a href="https://youtu.be/rSQoe6JcyC0?si=P6byzUbN9saQRV_l"
+         target="_blank" rel="noopener noreferrer"
+         class="link-button e-visa-button">🎒 베트남 여행 필수 준비물</a>
+    </div>
+  </section>
+
+  <!-- 광고 3 -->
+  <div class="ad-unit">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8457483390050878"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- ⑧ 제휴 문의 -->
+  <section class="content-section">
+    <h2 class="section-title">🤝 제휴 문의</h2>
+    <p style="font-size:14px; color:#888; margin-bottom:18px;">광고, 협찬, 콜라보 등 제휴 관련 문의는 아래 양식을 이용해 주세요. 빠른 시일 내에 답변드리겠습니다.</p>
     <form class="contact-form" action="https://formspree.io/f/xyknddeg" method="POST">
       <div class="form-group">
         <label for="contact-name">이름 / 회사명</label>
@@ -445,71 +598,89 @@
     <div class="contact-success" id="contactSuccess">
       ✅ 문의가 성공적으로 전송되었습니다. 빠른 시일 내에 답변드리겠습니다!
     </div>
+  </section>
+
+  <!-- ⑨ 개인정보처리방침 -->
+  <div class="privacy-section">
+    <h3>🔒 개인정보처리방침</h3>
+    <p>본 사이트는 구글 애드센스(Google AdSense)를 사용하며, 구글이 쿠키를 사용해 방문자의 관심사에 맞는 광고를 표시할 수 있습니다.</p>
+    <p><strong>수집 항목 및 목적</strong></p>
+    <ul>
+      <li>제휴 문의 폼: 이름, 이메일, 문의 내용 (문의 답변 목적, Formspree를 통해 처리)</li>
+      <li>광고 서비스: Google이 쿠키 또는 유사 기술을 이용해 광고를 제공합니다.</li>
+    </ul>
+    <p>사용자는 <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style="color:#4364F7;">Google 광고 설정</a>에서 개인화 광고를 비활성화할 수 있습니다.</p>
+    <p>문의: 위 제휴 문의 양식을 통해 연락해 주세요.</p>
   </div>
 
-  <div class="footer-banner">
-    Copyright © 2026 베트남 무비자 및 비자 계산기 | 제공 : <a href="https://www.youtube.com/@TourPick" target="_blank">투어픽(TourPick)</a>
-  </div>
-  
-</div>
+</div><!-- /container -->
+
+<footer class="site-footer">
+  Copyright © 2026 베트남 비자 계산기 | 제공 : <a href="https://www.youtube.com/@TourPick" target="_blank" rel="noopener noreferrer">투어픽(TourPick)</a>
+</footer>
 
 <script>
-// 날짜에 일수를 더하는 함수
-function addDays(dateString, days) {
-  const date = new Date(dateString);
-  date.setDate(date.getDate() + days);
-  return date;
+// 날짜 더하기
+function addDays(dateStr, days) {
+  const d = new Date(dateStr);
+  d.setDate(d.getDate() + days);
+  return d;
 }
 
-// 날짜를 한국어 형식으로 변환 (2026년 3월 10일 (화))
-function formatKoreanDate(date) {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
-  const weekday = weekdays[date.getDay()];
-  return `${year}년 ${month}월 ${day}일 (${weekday})`;
+// 한국어 날짜 포맷
+function formatKorean(d) {
+  const days = ['일','월','화','수','목','금','토'];
+  return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 (${days[d.getDay()]})`;
 }
 
-// 오늘 날짜를 YYYY-MM-DD 형식으로
+// 오늘 날짜 최솟값 설정
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('noVisaDate').setAttribute('min', today);
 document.getElementById('eVisaDate').setAttribute('min', today);
 
 // 무비자 계산기
 document.getElementById('noVisaDate').addEventListener('change', function(e) {
-  const entryDate = new Date(e.target.value);
-  const exitDate = addDays(e.target.value, 44);
-  
-  document.getElementById('noVisaEntry').textContent = formatKoreanDate(entryDate);
-  document.getElementById('noVisaExit').textContent = formatKoreanDate(exitDate);
+  const entry = new Date(e.target.value);
+  const exit  = addDays(e.target.value, 44);
+  document.getElementById('noVisaEntry').textContent = formatKorean(entry);
+  document.getElementById('noVisaExit').textContent  = formatKorean(exit);
   document.getElementById('noVisaResult').classList.add('show');
 });
 
-// 제휴 문의 폼 제출 처리
+// E비자 계산기
+document.getElementById('eVisaDate').addEventListener('change', function(e) {
+  const entry = new Date(e.target.value);
+  const exit  = addDays(e.target.value, 89);
+  document.getElementById('eVisaEntry').textContent = formatKorean(entry);
+  document.getElementById('eVisaExit').textContent  = formatKorean(exit);
+  document.getElementById('eVisaResult').classList.add('show');
+});
+
+// FAQ 토글
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q span').forEach(s => s.textContent = '＋');
+  if (!isOpen) {
+    answer.classList.add('open');
+    el.querySelector('span').textContent = '－';
+  }
+}
+
+// 제휴 문의 폼 제출
 const contactForm = document.querySelector('.contact-form');
 contactForm.addEventListener('submit', async function(e) {
   e.preventDefault();
-  const data = new FormData(contactForm);
   const res = await fetch(contactForm.action, {
     method: 'POST',
-    body: data,
+    body: new FormData(contactForm),
     headers: { 'Accept': 'application/json' }
   });
   if (res.ok) {
     contactForm.reset();
     document.getElementById('contactSuccess').style.display = 'block';
   }
-});
-
-// E비자 계산기
-document.getElementById('eVisaDate').addEventListener('change', function(e) {
-  const entryDate = new Date(e.target.value);
-  const exitDate = addDays(e.target.value, 89);
-  
-  document.getElementById('eVisaEntry').textContent = formatKoreanDate(entryDate);
-  document.getElementById('eVisaExit').textContent = formatKoreanDate(exitDate);
-  document.getElementById('eVisaResult').classList.add('show');
 });
 </script>
 
